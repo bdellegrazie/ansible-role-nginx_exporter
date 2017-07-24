@@ -12,8 +12,8 @@ Requires Ansible role `bdellegrazie.ansible-role-prometheus_exporter`
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `nginx_exporter_version`| Version of the exporter to use | `0.14.0` |
-| `nginx_exporter_tarball_checksum` | checksum of the tarball | sha1 checksum of 0.14.0 tarball |
+| `nginx_exporter_version`| Version of the exporter to use | `0.0.1` |
+| `nginx_exporter_tarball_checksum` | checksum of the tarball | sha1 checksum of 0.0.1 tarball |
 | `nginx_exporter_options`| Command line options | ['-nginx.scrape_uri=http://localhost/nginx_stats'] |
 
 Other variables are in defaults/main.yml
