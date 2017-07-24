@@ -2,7 +2,7 @@
 - name: systemd service
   become: true
   template:
-    src: "nginx_exporter.service.j2"
+    src: "nginx_exporter.systemd.j2"
     dest: "/lib/systemd/system/nginx_exporter.service"
     owner: root
     group: root

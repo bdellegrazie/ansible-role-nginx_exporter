@@ -74,6 +74,7 @@
   service:
     name: nginx_exporter
     enabled: "{{ nginx_exporter_service_enable }}"
+    use: "{{ prometheus_exporter_service_mgr }}"
   when: nginx_exporter_service_manage
 
 - name: Service State
@@ -82,5 +83,6 @@
   service:
     name: nginx_exporter
     state: "{{ nginx_exporter_service_state }}"
+    use: "{{ prometheus_exporter_service_mgr }}"
   register: _nginx_exporter_service_state
   when: nginx_exporter_service_manage
