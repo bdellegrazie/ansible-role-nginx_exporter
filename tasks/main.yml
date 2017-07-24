@@ -1,0 +1,86 @@
+---
+- name: group
+  become: true
+  become_user: root
+  group:
+    name: "{{ nginx_exporter_group }}"
+    state: present
+    system: true
+
+- name: user
+  become: true
+  become_user: root
+  user:
+    name: "{{ nginx_exporter_user }}"
+    group: "{{ nginx_exporter_group }}"
+    home: "{{ nginx_exporter_home }}"
+    createhome: false
+    move_home: false
+    comment: nginx_exporter
+    state: present
+    system: true
+
+- name: home
+  become: true
+  become_user: root
+  file:
+    path: "{{ nginx_exporter_home }}"
+    owner: "{{ nginx_exporter_user }}"
+    group: "{{ nginx_exporter_group }}"
+    mode: "u=rwx,g=rx,o="
+    state: directory
+
+- name: download
+  become: true
+  become_user: root
+  get_url:
+    url: "{{ nginx_exporter_url }}"
+    checksum: "{{ nginx_exporter_checksum }}"
+    dest: "{{ prometheus_exporter_dist_dir }}/{{ nginx_exporter_signature }}"
+    owner: root
+    group: root
+    mode: "u=rwx,go=rx"
+
+- name: symlink
+  become: true
+  become_user: root
+  file:
+    src: "{{ nginx_exporter_dist_dir }}/{{ nginx_exporter_signature }}"
+    path: "{{ prometheus_exporter_dir }}/nginx_exporter"
+    owner: root
+    group: root
+    force: true
+    mode: "ugo=rwx"
+    state: link
+  notify: restart nginx_exporter
+
+- name: config
+  become: true
+  become_user: root
+  template:
+    src: "nginx_exporter.default.conf.j2"
+    dest: "/etc/default/nginx_exporter"
+    owner: root
+    group: root
+    mode: "u=rw,go=r"
+  notify: restart nginx_exporter
+
+- name: install service
+  include: service-{{ prometheus_exporter_service_mgr }}.yml
+
+- name: Service Enabled
+  become: true
+  become_user: root
+  service:
+    name: nginx_exporter
+    enabled: "{{ nginx_exporter_service_enable }}"
+  when: nginx_exporter_service_manage
+
+- name: Service State
+  become: true
+  become_user: root
+  service:
+    name: nginx_exporter
+    state: "{{ nginx_exporter_service_state }}"
+  register: _nginx_exporter_service_state
+  when: nginx_exporter_service_manage

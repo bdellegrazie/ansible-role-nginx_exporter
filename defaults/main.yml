@@ -1,0 +1,23 @@
+---
+nginx_exporter_user:   nginx_exporter
+nginx_exporter_group:  nginx_exporter
+
+nginx_exporter_version: "0.0.1"
+nginx_exporter_checksum: "sha1:5ad4ab4e587344a20d4c5f952bad0b7d7530f931"
+
+nginx_exporter_signature: "nginx_exporter-{{ nginx_exporter_version }}"
+nginx_exporter_dist_dir: "{{ prometheus_exporter_dist_dir }}"
+nginx_exporter_url: "https://github.com/wrouesnel/nginx_exporter/releases/download/v{{ nginx_exporter_version }}/nginx_exporter"
+nginx_exporter_program: "{{ prometheus_exporter_dir }}/nginx_exporter"
+nginx_exporter_home: "/var/lib/nginx_exporter"
+nginx_exporter_options:
+  - '-nginx.scrape_uri=http://localhost/nginx_stats'
+
+nginx_exporter_config_file: /etc/default/nginx_exporter
+nginx_exporter_pid_path: "/var/run"
+nginx_exporter_log_path: "/var/log/nginx_exporter"
+
+nginx_exporter_service_manage: true
+nginx_exporter_service_enable: true
+nginx_exporter_service_state: started
+nginx_exporter_service_notify: true
