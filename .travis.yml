@@ -6,7 +6,7 @@ env:
     - distro=centos version='6'
     - distro=centos version='7'
     - distro=debian version='8'
-    #- distro=ubuntu version='1604'
+    - distro=ubuntu version='1604'
     - distro=fedora version='25'
 
 language: ruby
@@ -22,7 +22,9 @@ services:
   - docker
 
 before_install:
-  - pip install pre-commit
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+  - pip install --user pre-commit
 
 install:
   - pre-commit install
