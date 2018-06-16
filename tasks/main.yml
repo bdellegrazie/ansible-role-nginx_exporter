@@ -6,6 +6,7 @@
     name: "{{ nginx_exporter_group }}"
     state: present
     system: true
+  when: nginx_exporter_group_manage | bool
 
 - name: user
   become: true
@@ -19,12 +20,24 @@
     comment: nginx_exporter
     state: present
     system: true
+  when: nginx_exporter_user_manage | bool
 
 - name: home
   become: true
   become_user: root
   file:
     path: "{{ nginx_exporter_home }}"
+    owner: "{{ nginx_exporter_user }}"
+    group: "{{ nginx_exporter_group }}"
+    mode: "u=rwx,g=rx,o="
+    state: directory
+  when: nginx_exporter_home_manage | bool
+
+- name: logs
+  become: true
+  become_user: root
+  file:
+    path: "{{ nginx_exporter_log_path }}"
     owner: "{{ nginx_exporter_user }}"
     group: "{{ nginx_exporter_group }}"
     mode: "u=rwx,g=rx,o="
