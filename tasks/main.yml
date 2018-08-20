@@ -63,7 +63,6 @@
     owner: root
     group: root
     force: true
-    mode: "ugo=rwx"
     state: link
   notify: restart nginx_exporter
 
