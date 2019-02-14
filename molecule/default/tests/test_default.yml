@@ -1,0 +1,14 @@
+---
+port:
+  tcp6:9113:
+    listening: true
+
+# 15 character limit on process names
+process:
+  nginx_exporter:
+    running: true
+
+service:
+  nginx_exporter:
+    enabled: true
+    running: true

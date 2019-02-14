@@ -8,4 +8,4 @@
     use: "{{ prometheus_exporter_service_mgr }}"
   when: nginx_exporter_service_notify and (
     _nginx_exporter_service_state is not defined or
-    not ( _nginx_exporter_service_state | changed ))
+    not ( _nginx_exporter_service_state is changed ))

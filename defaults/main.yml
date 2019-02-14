@@ -1,7 +1,7 @@
 ---
-nginx_exporter_user:   nginx_exporter
+nginx_exporter_user: nginx_exporter
 nginx_exporter_user_manage: true
-nginx_exporter_group:  nginx_exporter
+nginx_exporter_group: nginx_exporter
 nginx_exporter_group_manage: true
 
 nginx_exporter_version: "0.0.1"
