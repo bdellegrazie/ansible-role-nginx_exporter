@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 ### Changed
 - Switch to Molecule for tests
+- Ansible to 2.7.9
+- Molecule updates (minor)
+- Pre-commit updates (minor)
 ### Deprecated
 ### Removed
 ### Fixed
