@@ -43,22 +43,44 @@
     mode: "u=rwx,g=rx,o="
     state: directory
 
-- name: download
+- name: download tarball
   become: true
   become_user: root
   get_url:
-    url: "{{ nginx_exporter_url }}"
-    checksum: "{{ nginx_exporter_checksum }}"
-    dest: "{{ prometheus_exporter_dist_dir }}/{{ nginx_exporter_signature }}"
+    url: "{{ nginx_exporter_tarball_url }}"
+    checksum: "{{ nginx_exporter_tarball_checksum }}"
+    dest: "{{ prometheus_exporter_dist_dir }}/{{ nginx_exporter_signature }}.tar.gz"
     owner: root
     group: root
     mode: "u=rwx,go=rx"
+
+- name: make distribution directory
+  become: true
+  become_user: root
+  file:
+    path: "{{ nginx_exporter_dist_dir }}"
+    owner: root
+    group: root
+    mode: "u=rwx,go=rx"
+    state: directory
+
+- name: untar tarball
+  become: true
+  become_user: root
+  unarchive:
+    src: "{{ prometheus_exporter_dist_dir }}/{{ nginx_exporter_signature }}.tar.gz"
+    dest: "{{ nginx_exporter_dist_dir }}"
+    remote_src: true
+    owner: root
+    group: root
+    mode: "u=rwx,go=rx"
+    creates: "{{ nginx_exporter_dist_dir }}/nginx-prometheus-exporter"
 
 - name: symlink
   become: true
   become_user: root
   file:
-    src: "{{ nginx_exporter_dist_dir }}/{{ nginx_exporter_signature }}"
+    src: "{{ nginx_exporter_dist_dir }}/nginx-prometheus-exporter"
     path: "{{ prometheus_exporter_dir }}/nginx_exporter"
     owner: root
     group: root

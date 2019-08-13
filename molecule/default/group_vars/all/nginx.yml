@@ -1,0 +1,11 @@
+---
+nginx_remove_default_vhost: true
+nginx_vhosts:
+  - listen: 80
+    server_name: "_"
+    root: "/usr/share/nginx/index.html"
+    state: present
+    extra_parameters: |
+      location = /nginx_stats {
+        stub_status;
+      }

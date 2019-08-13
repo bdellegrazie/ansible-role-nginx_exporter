@@ -4,17 +4,19 @@ nginx_exporter_user_manage: true
 nginx_exporter_group: nginx_exporter
 nginx_exporter_group_manage: true
 
-nginx_exporter_version: "0.0.1"
-nginx_exporter_checksum: "sha1:5ad4ab4e587344a20d4c5f952bad0b7d7530f931"
+nginx_exporter_version: "0.4.2"
+nginx_exporter_tarball_checksum: "sha256:8b3d234844826364615e72ca187844aaecefb6cb639fee2af8b465d95f380fc7"
+nginx_exporter_platform_suffix: "linux-amd64"
 
-nginx_exporter_signature: "nginx_exporter-{{ nginx_exporter_version }}"
-nginx_exporter_dist_dir: "{{ prometheus_exporter_dist_dir }}"
-nginx_exporter_url: "https://github.com/wrouesnel/nginx_exporter/releases/download/v{{ nginx_exporter_version }}/nginx_exporter"
+nginx_exporter_signature: "nginx-prometheus-exporter-{{ nginx_exporter_version }}-{{ nginx_exporter_platform_suffix }}"
+nginx_exporter_dist_dir: "{{ prometheus_exporter_dist_dir }}/{{ nginx_exporter_signature }}"
+nginx_exporter_tarball_url: "https://github.com/nginxinc/nginx-prometheus-exporter/releases/download/v{{ nginx_exporter_version }}/{{ nginx_exporter_signature }}.tar.gz"
 nginx_exporter_program: "{{ prometheus_exporter_dir }}/nginx_exporter"
 nginx_exporter_home: "/var/lib/nginx_exporter"
 nginx_exporter_home_manage: true
 nginx_exporter_options:
-  - '-nginx.scrape_uri=http://localhost/nginx_stats'
+  - '-nginx.retries 32768'
+  - '-nginx.scrape-uri http://localhost/nginx_stats'
 
 nginx_exporter_config_file: /etc/default/nginx_exporter
 nginx_exporter_pid_path: "/var/run"

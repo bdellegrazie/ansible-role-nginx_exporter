@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 ### Security
 
+## [v3.0.0] 2019-08-13
+### Changed
+- Switched to https://github.com/nginxinc/nginx-prometheus-exporter as the official exporter
+  Command line parameters now space separated
+
 ## [v2.0.2] 2019-08-13
 ### Changed
 - Switch to Molecule for tests
@@ -20,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Pre-commit updates (minor)
 - prometheus\_exporter dependency to 1.1.1
 
+[3.0.0]: https://github.com/bdellegrazie/ansible-role-postgresql_exporter/compare/v2.0.2...v3.0.0
 [2.0.2]: https://github.com/bdellegrazie/ansible-role-postgresql_exporter/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/bdellegrazie/ansible-role-postgresql_exporter/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/bdellegrazie/ansible-role-postgresql_exporter/compare/v1.0.1...v2.0.0

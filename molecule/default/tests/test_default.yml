@@ -12,3 +12,9 @@ service:
   nginx_exporter:
     enabled: true
     running: true
+
+http:
+  http://localhost:9113/metrics:
+    status: 200
+    body:
+      - "nginxexporter_build_info"

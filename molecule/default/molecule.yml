@@ -26,6 +26,8 @@ platforms:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     tmpfs:
       - "/run"
+    environment:
+      container: docker
   - name: "debian9"
     image: "bdellegrazie/debian-systemd:9"
     pull: true
