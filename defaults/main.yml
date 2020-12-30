@@ -4,8 +4,8 @@ nginx_exporter_user_manage: true
 nginx_exporter_group: nginx_exporter
 nginx_exporter_group_manage: true
 
-nginx_exporter_version: "0.5.0"
-nginx_exporter_tarball_checksum: "sha256:42e049d2313ef341f02eea72271d4342ca330a89f68150905c78324052b4b42d"
+nginx_exporter_version: "0.8.0"
+nginx_exporter_tarball_checksum: "sha256:fce51ce62650186f9f4cb3ff13fa4b36ffc2980058a63bccdb471c929c078e50"
 nginx_exporter_platform_suffix: "linux-amd64"
 
 nginx_exporter_signature: "nginx-prometheus-exporter-{{ nginx_exporter_version }}-{{ nginx_exporter_platform_suffix }}"

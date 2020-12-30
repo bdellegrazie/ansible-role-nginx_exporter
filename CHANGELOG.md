@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 ### Changed
+- Updated nginx\_exporter to version 0.8.0
+- Updated prometheus\_exporter to 2.0.3
+- Ansible for tests updated to 2.9.16
+- Molecule for tests updated accordingly
 ### Deprecated
 ### Removed
 ### Fixed
